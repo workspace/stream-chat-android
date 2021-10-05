@@ -10,6 +10,7 @@ import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.models.Device
 import io.getstream.chat.android.client.models.PushMessage
 import io.getstream.chat.android.client.models.PushProvider
+import io.getstream.chat.android.client.logger.ChatLogger
 import kotlin.jvm.Throws
 
 /**
@@ -22,6 +23,8 @@ public object XiaomiMessagingDelegate {
             .build()
             .adapter(Types.newParameterizedType(Map::class.java, String::class.java, String::class.java))
     }
+
+    private val logger = ChatLogger.get("ChatXiaomiMessagingReceiver")
 
     /**
      * Handles [miPushMessage] from Xiaomi.
@@ -36,9 +39,13 @@ public object XiaomiMessagingDelegate {
     @Throws(IllegalStateException::class)
     @JvmStatic
     public fun handleMiPushMessage(miPushMessage: MiPushMessage): Boolean {
+
+        logger.logD("miPushMessage.extra -> ${miPushMessage.extra}")
         if (!miPushMessage.isValid()) {
+            logger.logD("miPushMessage is not valid")
             return false
         }
+        logger.logD("miPushMessage is valid: -> ${miPushMessage.toPushMessage()}")
 
         ChatClient.handlePushMessage(miPushMessage.toPushMessage())
         return true

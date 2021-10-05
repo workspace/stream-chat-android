@@ -38,13 +38,13 @@ class ChatInitializer(private val context: Context) {
         val notificationConfig =
             NotificationConfig(
                 pushDeviceGenerators = listOf(
-                    FirebasePushDeviceGenerator(),
-                    HuaweiPushDeviceGenerator(context, ApplicationConfigurator.HUAWEI_APP_ID),
                     XiaomiPushDeviceGenerator(
                         context,
                         ApplicationConfigurator.XIAOMI_APP_ID,
                         ApplicationConfigurator.XIAOMI_APP_KEY,
                     ),
+                    FirebasePushDeviceGenerator(),
+                    HuaweiPushDeviceGenerator(context, ApplicationConfigurator.HUAWEI_APP_ID),
                 ),
             )
         val logLevel = if (BuildConfig.DEBUG) ChatLogLevel.ALL else ChatLogLevel.NOTHING
