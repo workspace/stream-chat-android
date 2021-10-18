@@ -28,6 +28,7 @@ io.getstream.chat.android.client.clientstate
 io.getstream.chat.android.client.di
 io.getstream.chat.android.client.errors
 io.getstream.chat.android.client.events
+io.getstream.chat.android.client.experimental.plugin
 io.getstream.chat.android.client.experimental.plugin.listeners
 io.getstream.chat.android.client.extensions
 io.getstream.chat.android.client.header
@@ -91,6 +92,12 @@ io.getstream.chat.android.livedata.controller
 io.getstream.chat.android.livedata.utils
 io.getstream.chat.android.offline
 io.getstream.chat.android.offline.channel
+io.getstream.chat.android.offline.experimental.extensions
+io.getstream.chat.android.offline.experimental.plugin
+io.getstream.chat.android.offline.experimental.plugin.adapter
+io.getstream.chat.android.offline.experimental.plugin.state
+io.getstream.chat.android.offline.experimental.querychannels
+io.getstream.chat.android.offline.experimental.querychannels.state
 io.getstream.chat.android.offline.extensions
 io.getstream.chat.android.offline.message.attachment
 io.getstream.chat.android.offline.querychannels
