@@ -41,6 +41,8 @@ io.getstream.chat.android.client.parser2.adapters
 io.getstream.chat.android.client.socket
 io.getstream.chat.android.client.token
 io.getstream.chat.android.client.uploader
+io.getstream.chat.android.client.user
+io.getstream.chat.android.client.user.storage
 io.getstream.chat.android.client.utils
 io.getstream.chat.android.client.utils.internal.toggle
 io.getstream.chat.android.client.utils.internal.toggle.dialog
@@ -100,6 +102,7 @@ io.getstream.chat.android.offline.experimental.querychannels
 io.getstream.chat.android.offline.experimental.querychannels.state
 io.getstream.chat.android.offline.extensions
 io.getstream.chat.android.offline.message.attachment
+io.getstream.chat.android.offline.model
 io.getstream.chat.android.offline.querychannels
 io.getstream.chat.android.offline.thread
 io.getstream.chat.android.offline.utils
