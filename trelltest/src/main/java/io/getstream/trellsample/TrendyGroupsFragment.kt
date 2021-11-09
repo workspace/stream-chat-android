@@ -15,4 +15,8 @@ class TrendyGroupsFragment : ChannelListFragment() {
     override fun getSort(): QuerySort<Channel> {
         return QuerySort.desc(Channel::memberCount)
     }
+
+    override fun getLimit(): Int {
+        return 10
+    }
 }

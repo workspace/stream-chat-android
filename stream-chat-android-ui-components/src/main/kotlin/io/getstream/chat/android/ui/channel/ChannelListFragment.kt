@@ -203,7 +203,7 @@ public open class ChannelListFragment : Fragment() {
     }
 
     protected open fun createChannelListViewModelFactory(): ChannelListViewModelFactory {
-        return ChannelListViewModelFactory(filter = getFilter(), sort = getSort())
+        return ChannelListViewModelFactory(filter = getFilter(), sort = getSort(), limit = getLimit())
     }
 
     /**
@@ -221,6 +221,10 @@ public open class ChannelListFragment : Fragment() {
      */
     protected open fun getSort(): QuerySort<Channel> {
         return ChannelListViewModel.DEFAULT_SORT
+    }
+
+    protected open fun getLimit(): Int {
+        return 30
     }
 
     /**

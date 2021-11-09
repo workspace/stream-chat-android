@@ -207,6 +207,7 @@ public class io/getstream/chat/android/ui/channel/ChannelListFragment : androidx
 	protected final fun getHeaderActionButtonClickListener ()Lio/getstream/chat/android/ui/channel/ChannelListFragment$HeaderActionButtonClickListener;
 	protected final fun getHeaderTitle ()Ljava/lang/String;
 	protected final fun getHeaderUserAvatarClickListener ()Lio/getstream/chat/android/ui/channel/ChannelListFragment$HeaderUserAvatarClickListener;
+	protected fun getLimit ()I
 	protected final fun getSearchResultClickListener ()Lio/getstream/chat/android/ui/channel/ChannelListFragment$SearchResultClickListener;
 	protected final fun getSearchViewModel ()Lio/getstream/chat/android/ui/search/list/viewmodel/SearchViewModel;
 	protected final fun getShowHeader ()Z

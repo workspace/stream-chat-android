@@ -24,7 +24,7 @@ class TrellSampleApp : Application() {
     @OptIn(InternalStreamChatApi::class)
     override fun onCreate() {
         super.onCreate()
-        val offlinePlugin = OfflinePlugin(Config(userPresence = true, persistenceEnabled = true))
+        val offlinePlugin = OfflinePlugin(Config(userPresence = true, persistenceEnabled = false))
 
         val client = ChatClient.Builder("qx5us2v6xvmh", this)
             .logLevel(ChatLogLevel.DEBUG)
