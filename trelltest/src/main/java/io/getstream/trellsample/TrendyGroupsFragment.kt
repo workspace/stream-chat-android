@@ -9,7 +9,7 @@ import io.getstream.chat.android.ui.channel.ChannelListFragment
 
 class TrendyGroupsFragment : ChannelListFragment() {
     override fun getFilter(): FilterObject {
-        return Filters.`in`("members", listOf(ChatClient.instance().getCurrentUser()!!.id))
+        return Filters.nin("members", listOf(ChatClient.instance().getCurrentUser()!!.id))
     }
 
     override fun getSort(): QuerySort<Channel> {
