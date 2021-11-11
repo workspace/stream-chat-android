@@ -94,6 +94,8 @@ io.getstream.chat.android.livedata.controller
 io.getstream.chat.android.livedata.utils
 io.getstream.chat.android.offline
 io.getstream.chat.android.offline.channel
+io.getstream.chat.android.offline.experimental.channel
+io.getstream.chat.android.offline.experimental.channel.state
 io.getstream.chat.android.offline.experimental.extensions
 io.getstream.chat.android.offline.experimental.plugin
 io.getstream.chat.android.offline.experimental.plugin.adapter
@@ -160,6 +162,7 @@ io.getstream.chat.android.ui.message.list
 io.getstream.chat.android.ui.message.list.adapter
 io.getstream.chat.android.ui.message.list.adapter.view
 io.getstream.chat.android.ui.message.list.adapter.viewholder.attachment
+io.getstream.chat.android.ui.message.list.background
 io.getstream.chat.android.ui.message.list.header
 io.getstream.chat.android.ui.message.list.header.viewmodel
 io.getstream.chat.android.ui.message.list.reactions
