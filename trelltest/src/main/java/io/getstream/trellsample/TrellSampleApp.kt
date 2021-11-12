@@ -20,10 +20,13 @@ class TrellSampleApp : Application() {
     val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoib2xlZyJ9.ZucjlxjiNewCORdCLwpKwZw2nNtRC_Bv17TjHlitdLU"
 
-
     @OptIn(InternalStreamChatApi::class)
     override fun onCreate() {
         super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            TrellAppConfigurator.configure(this)
+        }
         val offlinePlugin = OfflinePlugin(Config(userPresence = true, persistenceEnabled = false))
 
         val client = ChatClient.Builder("qx5us2v6xvmh", this)

@@ -13,6 +13,11 @@ public final class io/getstream/trellsample/MainActivity : androidx/appcompat/ap
 	public final fun getUserGroupsContainer ()Landroid/view/ViewGroup;
 }
 
+public final class io/getstream/trellsample/TrellAppConfigurator {
+	public static final field INSTANCE Lio/getstream/trellsample/TrellAppConfigurator;
+	public final fun configure (Landroid/app/Application;)V
+}
+
 public final class io/getstream/trellsample/TrellSampleApp : android/app/Application {
 	public fun <init> ()V
 	public final fun getToken ()Ljava/lang/String;

@@ -1,3 +1,5 @@
+import io.getstream.chat.android.Dependencies
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -45,6 +47,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     implementation project(path: ':stream-chat-android-ui-components')
+    implementation Dependencies.flipper
+    implementation Dependencies.flipperNetwork
+    implementation Dependencies.flipperLoader
+    implementation Dependencies.fragmentTest
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
