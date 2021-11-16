@@ -27,7 +27,7 @@ class TrellSampleApp : Application() {
         if (BuildConfig.DEBUG) {
             TrellAppConfigurator.configure(this)
         }
-        val offlinePlugin = OfflinePlugin(Config(userPresence = true, persistenceEnabled = false))
+        val offlinePlugin = OfflinePlugin(Config(userPresence = true, persistenceEnabled = true))
 
         val client = ChatClient.Builder("qx5us2v6xvmh", this)
             .logLevel(ChatLogLevel.DEBUG)
