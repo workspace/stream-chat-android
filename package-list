@@ -54,6 +54,7 @@ io.getstream.chat.android.compose.state.channel.list
 io.getstream.chat.android.compose.state.imagepreview
 io.getstream.chat.android.compose.state.messages
 io.getstream.chat.android.compose.state.messages.attachments
+io.getstream.chat.android.compose.state.messages.composer
 io.getstream.chat.android.compose.state.messages.items
 io.getstream.chat.android.compose.state.messages.list
 io.getstream.chat.android.compose.state.messages.reaction
@@ -121,6 +122,7 @@ com.getstream.sdk.chat.images
 com.getstream.sdk.chat.model
 com.getstream.sdk.chat.navigation
 com.getstream.sdk.chat.navigation.destinations
+com.getstream.sdk.chat.startup
 com.getstream.sdk.chat.utils
 com.getstream.sdk.chat.utils.extensions
 com.getstream.sdk.chat.utils.roundedImageView
@@ -130,6 +132,8 @@ com.getstream.sdk.chat.view.activity
 com.getstream.sdk.chat.view.messages
 com.getstream.sdk.chat.viewmodel
 com.getstream.sdk.chat.viewmodel.messages
+io.getstream.chat.android.common.composer
+io.getstream.chat.android.common.state
 module:stream-chat-android-ui-components
 io.getstream.chat.android.ui
 io.getstream.chat.android.ui.avatar
@@ -143,7 +147,6 @@ io.getstream.chat.android.ui.channel.list.viewmodel
 io.getstream.chat.android.ui.channel.list.viewmodel.factory
 io.getstream.chat.android.ui.common
 io.getstream.chat.android.ui.common.extensions
-io.getstream.chat.android.ui.common.internal
 io.getstream.chat.android.ui.common.markdown
 io.getstream.chat.android.ui.common.navigation
 io.getstream.chat.android.ui.common.navigation.destinations
@@ -155,6 +158,7 @@ io.getstream.chat.android.ui.mention.list.viewmodel
 io.getstream.chat.android.ui.message
 io.getstream.chat.android.ui.message.input
 io.getstream.chat.android.ui.message.input.attachment
+io.getstream.chat.android.ui.message.input.attachment.selected.internal
 io.getstream.chat.android.ui.message.input.mention
 io.getstream.chat.android.ui.message.input.transliteration
 io.getstream.chat.android.ui.message.input.viewmodel
