@@ -13,7 +13,7 @@ import io.getstream.chat.android.offline.experimental.plugin.OfflinePlugin
 @OptIn(ExperimentalStreamChatApi::class)
 class TrellSampleApp : Application() {
 
-    val user = User(id = "oleg").apply {
+    private val user = User(id = "oleg").apply {
         name = "Oleg Kuzmin"
         image = "https://ca.slack-edge.com/T02RM6X6B-U019BEATNCD-bad2dcf654ef-128"
     }
@@ -30,7 +30,7 @@ class TrellSampleApp : Application() {
         val offlinePlugin = OfflinePlugin(Config(userPresence = true, persistenceEnabled = true))
 
         val client = ChatClient.Builder("qx5us2v6xvmh", this)
-            .logLevel(ChatLogLevel.DEBUG)
+            .logLevel(ChatLogLevel.ALL)
             .withPlugin(offlinePlugin)
             .build()
         client.connectUser(user, token).enqueue()
