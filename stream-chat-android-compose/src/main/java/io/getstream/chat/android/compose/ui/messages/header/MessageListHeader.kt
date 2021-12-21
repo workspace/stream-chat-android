@@ -27,10 +27,10 @@ import io.getstream.chat.android.client.models.Channel
 import io.getstream.chat.android.client.models.User
 import io.getstream.chat.android.common.state.MessageMode
 import io.getstream.chat.android.compose.R
-import io.getstream.chat.android.compose.ui.common.BackButton
-import io.getstream.chat.android.compose.ui.common.NetworkLoadingView
-import io.getstream.chat.android.compose.ui.common.TypingIndicator
-import io.getstream.chat.android.compose.ui.common.avatar.ChannelAvatar
+import io.getstream.chat.android.compose.ui.components.BackButton
+import io.getstream.chat.android.compose.ui.components.NetworkLoadingIndicator
+import io.getstream.chat.android.compose.ui.components.TypingIndicator
+import io.getstream.chat.android.compose.ui.components.avatar.ChannelAvatar
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
 import io.getstream.chat.android.compose.ui.util.getMembersStatusText
 import io.getstream.chat.android.offline.model.ConnectionState
@@ -134,9 +134,8 @@ public fun DefaultMessageHeaderTitle(
     onHeaderActionClick: (Channel) -> Unit = {},
     connectionState: ConnectionState = ConnectionState.CONNECTED,
 ) {
-
     val title = when (messageMode) {
-        MessageMode.Normal -> ChatTheme.channelNameFormatter.formatChannelName(channel)
+        MessageMode.Normal -> ChatTheme.channelNameFormatter.formatChannelName(channel, currentUser)
         is MessageMode.MessageThread -> stringResource(id = R.string.stream_compose_thread_title)
     }
 
@@ -144,7 +143,7 @@ public fun DefaultMessageHeaderTitle(
         MessageMode.Normal -> channel.getMembersStatusText(LocalContext.current, currentUser)
         is MessageMode.MessageThread -> stringResource(
             R.string.stream_compose_thread_subtitle,
-            ChatTheme.channelNameFormatter.formatChannelName(channel)
+            ChatTheme.channelNameFormatter.formatChannelName(channel, currentUser)
         )
     }
 
@@ -204,7 +203,7 @@ public fun DefaultMessageHeaderTitle(
                 }
             }
         } else {
-            NetworkLoadingView(
+            NetworkLoadingIndicator(
                 modifier = Modifier.wrapContentHeight(),
                 spinnerSize = 12.dp,
                 textColor = subtitleTextColor,

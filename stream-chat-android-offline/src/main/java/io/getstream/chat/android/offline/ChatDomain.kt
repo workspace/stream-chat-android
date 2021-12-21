@@ -211,6 +211,14 @@ public sealed interface ChatDomain {
      * @return Executable async [Call] responsible for loading older messages in a channel.
      */
     @CheckResult
+    @Deprecated(
+        message = "loadOlderMessages is deprecated. Use extension function ChatClient::loadOlderMessages instead",
+        replaceWith = ReplaceWith(
+            expression = "ChatClient.instance().loadOlderMessages(cid, messageLimit)",
+            imports = arrayOf("io.getstream.chat.android.client.ChatClient")
+        ),
+        level = DeprecationLevel.WARNING
+    )
     public fun loadOlderMessages(cid: String, messageLimit: Int): Call<Channel>
 
     /**
@@ -513,6 +521,14 @@ public sealed interface ChatDomain {
      * @return Executable async [Call] responsible for hiding a channel.
      */
     @CheckResult
+    @Deprecated(
+        message = "Deprecated. Use ChatClient::showChannel instead",
+        replaceWith = ReplaceWith(
+            expression = "ChatClient.instance().showChannel(channelType, channelId)",
+            imports = arrayOf("io.getstream.chat.android.client.ChatClient")
+        ),
+        level = DeprecationLevel.WARNING
+    )
     public fun showChannel(cid: String): Call<Unit>
 
     /**
