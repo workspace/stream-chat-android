@@ -7,10 +7,10 @@ import androidx.core.os.bundleOf
 
 class MainActivity : AppCompatActivity() {
 
-    val userGroupsContainer: ViewGroup
+    private val userGroupsContainer: ViewGroup
         get() = findViewById(R.id.user_groups)
 
-    val trendyGroupsContainer: ViewGroup
+    private val trendyGroupsContainer: ViewGroup
         get() = findViewById(R.id.trendy_groups)
 
     override fun onCreate(savedInstanceState: Bundle?) {

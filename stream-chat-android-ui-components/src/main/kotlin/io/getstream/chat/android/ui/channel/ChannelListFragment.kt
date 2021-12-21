@@ -18,6 +18,7 @@ import io.getstream.chat.android.client.api.models.QuerySort
 import io.getstream.chat.android.client.models.Channel
 import io.getstream.chat.android.client.models.Filters
 import io.getstream.chat.android.client.models.Message
+import io.getstream.chat.android.offline.querychannels.ChatEventHandlerFactory
 import io.getstream.chat.android.ui.channel.list.ChannelListView
 import io.getstream.chat.android.ui.channel.list.header.ChannelListHeaderView
 import io.getstream.chat.android.ui.channel.list.header.viewmodel.ChannelListHeaderViewModel
@@ -203,7 +204,12 @@ public open class ChannelListFragment : Fragment() {
     }
 
     protected open fun createChannelListViewModelFactory(): ChannelListViewModelFactory {
-        return ChannelListViewModelFactory(filter = getFilter(), sort = getSort(), limit = getLimit())
+        return ChannelListViewModelFactory(
+            filter = getFilter(),
+            sort = getSort(),
+            limit = getLimit(),
+            chatEventHandlerFactory = getChatEventHandlerFactory()
+        )
     }
 
     /**
@@ -214,6 +220,10 @@ public open class ChannelListFragment : Fragment() {
             Filters.eq("type", "messaging"),
             Filters.`in`("members", listOf(ChatClient.instance().getCurrentUser()?.id ?: ""))
         )
+    }
+
+    protected open fun getChatEventHandlerFactory(): ChatEventHandlerFactory {
+        return ChatEventHandlerFactory()
     }
 
     /**

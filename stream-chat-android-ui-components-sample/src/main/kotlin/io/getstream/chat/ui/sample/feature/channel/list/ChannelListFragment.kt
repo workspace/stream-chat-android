@@ -14,7 +14,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.getstream.sdk.chat.utils.Utils
 import io.getstream.chat.android.client.ChatClient
+import io.getstream.chat.android.client.api.models.QuerySort
 import io.getstream.chat.android.client.extensions.isAnonymousChannel
+import io.getstream.chat.android.client.models.Channel
 import io.getstream.chat.android.client.models.Filters
 import io.getstream.chat.android.core.internal.InternalStreamChatApi
 import io.getstream.chat.android.offline.querychannels.DefaultChatEventHandler
@@ -38,6 +40,7 @@ class ChannelListFragment : Fragment() {
                 Filters.`in`("members", listOf(ChatClient.instance().getCurrentUser()?.id ?: "")),
                 Filters.or(Filters.notExists("draft"), Filters.eq("draft", false)),
             ),
+            sort = QuerySort.desc(Channel::lastMessageAt),
         )
     }
     private val searchViewModel: SearchViewModel by viewModels()
