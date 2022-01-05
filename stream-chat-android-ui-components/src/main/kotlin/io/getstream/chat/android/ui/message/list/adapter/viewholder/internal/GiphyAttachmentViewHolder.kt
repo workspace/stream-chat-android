@@ -66,6 +66,9 @@ internal class GiphyAttachmentViewHolder(
 
     override fun bindData(data: MessageListItem.MessageItem, diff: MessageListItemPayloadDiff?) {
         super.bindData(data, diff)
+        val attachment = data.message.attachments.first()
+
+        binding.mediaAttachmentView.resizeContainer(attachment, binding.messageContainer)
 
         binding.messageText.isVisible = data.message.text.isNotEmpty()
         markdown.setText(binding.messageText, data.message.text)
@@ -80,18 +83,15 @@ internal class GiphyAttachmentViewHolder(
             setListeners(binding.mediaAttachmentView, listeners, data)
         }
 
-        val attachment = data.message.attachments.first()
-
-        binding.messageContainer.post {
-            showGiphy(attachment, binding.messageContainer, binding.messageContainer.width)
-        }
+        showGiphy(attachment, binding.messageContainer, binding.messageContainer.width, binding.messageContainer.height)
     }
 
-    private fun showGiphy(attachment: Attachment, containerView: View, maxWidth: Int) {
+    private fun showGiphy(attachment: Attachment, containerView: View, maxWidth: Int, maxHeight: Int) {
         binding.mediaAttachmentView.showGiphy(
             attachment = attachment,
             containerView = containerView,
-            maxWidth = maxWidth
+            maxWidth = maxWidth,
+            maxHeight = maxHeight
         )
     }
 
