@@ -55,7 +55,6 @@ io.getstream.chat.android.compose.state.imagepreview
 io.getstream.chat.android.compose.state.messageoptions
 io.getstream.chat.android.compose.state.messages
 io.getstream.chat.android.compose.state.messages.attachments
-io.getstream.chat.android.compose.state.messages.composer
 io.getstream.chat.android.compose.state.messages.list
 io.getstream.chat.android.compose.state.reactionoptions
 io.getstream.chat.android.compose.state.userreactions
@@ -102,6 +101,8 @@ io.getstream.chat.android.core.internal
 io.getstream.chat.android.core.internal.coroutines
 io.getstream.chat.android.core.internal.fsm
 io.getstream.chat.android.core.internal.fsm.builder
+module:stream-chat-android-markdown-transformer
+io.getstream.chat.android.markdown
 module:stream-chat-android-offline
 io.getstream.chat.android.livedata
 io.getstream.chat.android.livedata.controller
@@ -202,6 +203,7 @@ io.getstream.chat.android.ui.suggestion
 io.getstream.chat.android.ui.suggestion.list
 io.getstream.chat.android.ui.suggestion.list.adapter
 io.getstream.chat.android.ui.suggestion.list.adapter.viewholder
+io.getstream.chat.android.ui.transformer
 io.getstream.chat.android.ui.typing
 io.getstream.chat.android.ui.typing.viewmodel
 io.getstream.chat.android.ui.typing.viewmodel.factory
