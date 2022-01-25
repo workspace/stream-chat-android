@@ -74,6 +74,7 @@ io.getstream.chat.android.compose.ui.components.composer
 io.getstream.chat.android.compose.ui.components.messageoptions
 io.getstream.chat.android.compose.ui.components.messages
 io.getstream.chat.android.compose.ui.components.reactionoptions
+io.getstream.chat.android.compose.ui.components.reactionpicker
 io.getstream.chat.android.compose.ui.components.selectedmessage
 io.getstream.chat.android.compose.ui.components.suggestions
 io.getstream.chat.android.compose.ui.components.suggestions.commands
