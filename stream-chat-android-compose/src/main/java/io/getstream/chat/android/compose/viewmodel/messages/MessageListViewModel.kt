@@ -791,6 +791,7 @@ public class MessageListViewModel(
         if (message.ownReactions.any { it.messageId == reaction.messageId && it.type == reaction.type }) {
             chatDomain.deleteReaction(channelId, reaction).enqueue()
         } else {
+            chatClient
             chatDomain.sendReaction(channelId, reaction, enforceUniqueReactions).enqueue()
         }
     }

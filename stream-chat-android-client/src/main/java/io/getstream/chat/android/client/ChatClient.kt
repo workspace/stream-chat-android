@@ -48,6 +48,7 @@ import io.getstream.chat.android.client.experimental.plugin.listeners.EditMessag
 import io.getstream.chat.android.client.experimental.plugin.listeners.QueryChannelListener
 import io.getstream.chat.android.client.experimental.plugin.listeners.QueryChannelsListener
 import io.getstream.chat.android.client.experimental.plugin.listeners.SendMessageListener
+import io.getstream.chat.android.client.experimental.plugin.listeners.SendReactionListener
 import io.getstream.chat.android.client.experimental.plugin.listeners.ThreadQueryListener
 import io.getstream.chat.android.client.extensions.ATTACHMENT_TYPE_FILE
 import io.getstream.chat.android.client.extensions.ATTACHMENT_TYPE_IMAGE
@@ -551,15 +552,29 @@ public class ChatClient internal constructor(
     }
 
     @CheckResult
+    @JvmOverloads
+    public fun sendReaction(reaction: Reaction, enforceUnique: Boolean = false): Call<Reaction> {
+        val relevantPlugins = plugins.filterIsInstance<SendReactionListener>()
+
+        return api.sendReaction(reaction, enforceUnique)
+            .doOnStart(scope) {
+                relevantPlugins.forEach { plugin ->
+                    plugin.onReactionSendRequest(reactionType, enforceUnique)
+                }
+            }
+            .doOnResult(scope) { result ->
+                relevantPlugins.forEach { plugin ->
+                    plugin.onReactionSendResult(result, reactionType, enforceUnique)
+                }
+            }
+    }
+
+    @CheckResult
     public fun deleteReaction(messageId: String, reactionType: String): Call<Message> {
         return api.deleteReaction(messageId, reactionType)
     }
 
-    @CheckResult
-    @JvmOverloads
-    public fun sendReaction(reaction: Reaction, enforceUnique: Boolean = false): Call<Reaction> {
-        return api.sendReaction(reaction, enforceUnique)
-    }
+
     //endregion
 
     //endregion

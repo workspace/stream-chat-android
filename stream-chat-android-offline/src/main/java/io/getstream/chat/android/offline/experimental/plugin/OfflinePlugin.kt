@@ -11,10 +11,13 @@ import io.getstream.chat.android.client.experimental.plugin.listeners.ChannelMar
 import io.getstream.chat.android.client.experimental.plugin.listeners.EditMessageListener
 import io.getstream.chat.android.client.experimental.plugin.listeners.QueryChannelListener
 import io.getstream.chat.android.client.experimental.plugin.listeners.QueryChannelsListener
+import io.getstream.chat.android.client.experimental.plugin.listeners.SendReactionListener
 import io.getstream.chat.android.client.experimental.plugin.listeners.ThreadQueryListener
 import io.getstream.chat.android.client.extensions.cidToTypeAndId
 import io.getstream.chat.android.client.models.Channel
 import io.getstream.chat.android.client.models.Message
+import io.getstream.chat.android.client.models.Reaction
+import io.getstream.chat.android.client.models.User
 import io.getstream.chat.android.client.utils.Result
 import io.getstream.chat.android.client.utils.SyncStatus
 import io.getstream.chat.android.core.ExperimentalStreamChatApi
@@ -28,6 +31,9 @@ import io.getstream.chat.android.offline.experimental.global.GlobalState
 import io.getstream.chat.android.offline.experimental.plugin.logic.LogicRegistry
 import io.getstream.chat.android.offline.experimental.plugin.state.StateRegistry
 import io.getstream.chat.android.offline.extensions.isPermanent
+import io.getstream.chat.android.offline.extensions.addMyReaction
+import io.getstream.chat.android.offline.repository.RepositoryFacade
+import io.getstream.chat.android.offline.repository.domain.reaction.ReactionRepository
 import java.util.Date
 
 /**
@@ -45,7 +51,8 @@ public class OfflinePlugin(
     QueryChannelListener,
     ThreadQueryListener,
     ChannelMarkReadListener,
-    EditMessageListener {
+    EditMessageListener,
+    SendReactionListener {
 
     internal constructor() : this(Config())
 
@@ -119,6 +126,39 @@ public class OfflinePlugin(
 
     override suspend fun onQueryChannelsResult(result: Result<List<Channel>>, request: QueryChannelsRequest): Unit =
         logic.queryChannels(request).onQueryChannelsResult(result, request)
+
+    override fun onReactionSendRequest(currentUser: User, reaction: Reaction, enforceUnique: Boolean) {
+        val online = globalState.isOnline()
+
+        val newReaction = reaction.copy(
+            user = currentUser,
+            userId = currentUser.id,
+            syncStatus = if (online) SyncStatus.IN_PROGRESS else SyncStatus.SYNC_NEEDED,
+            enforceUnique = enforceUnique,
+        )
+
+        // insert the message into local storage
+
+        if (enforceUnique) {
+            // remove all user's reactions to the message
+            domainImpl.repos.updateReactionsForMessageByDeletedDate(
+                userId = currentUser.id,
+                messageId = reaction.messageId,
+                deletedAt = Date()
+            )
+        }
+        // update flow
+        val currentMessage = getMessage(reaction.messageId)?.copy()
+        currentMessage?.let {
+            it.addMyReaction(reaction, enforceUnique = enforceUnique)
+            upsertMessage(it)
+            domainImpl.repos.insertMessage(it)
+        }
+    }
+
+    override fun onReactionSendResult(result: Result<Reaction>, reaction: Reaction, enforceUnique: Boolean) {
+        TODO("Not yet implemented")
+    }
 
     override suspend fun onQueryChannelPrecondition(
         channelType: String,
