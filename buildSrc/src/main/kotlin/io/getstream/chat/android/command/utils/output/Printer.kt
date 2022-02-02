@@ -1,4 +1,4 @@
-package io.getstream.chat.android.command.release.output
+package io.getstream.chat.android.command.utils.output
 
 import io.getstream.chat.android.command.release.model.Document
 import io.getstream.chat.android.command.release.model.Section
