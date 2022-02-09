@@ -981,8 +981,7 @@ public class ChatClient internal constructor(
 
         return api.updateMessage(message)
             .doOnStart(scope) {
-                relevantPlugins
-                    .forEach { plugin -> plugin.onMessageEditRequest(message) }
+                relevantPlugins.forEach { plugin -> plugin.onMessageEditRequest(message) }
             }
             .doOnResult(scope) { result ->
                 relevantPlugins.forEach { plugin -> plugin.onMessageEditResult(message, result) }

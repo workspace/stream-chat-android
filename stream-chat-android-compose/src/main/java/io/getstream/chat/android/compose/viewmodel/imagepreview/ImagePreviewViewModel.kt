@@ -8,6 +8,7 @@ import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.models.Attachment
 import io.getstream.chat.android.client.models.Message
 import io.getstream.chat.android.client.models.User
+import io.getstream.chat.android.client.utils.internal.toggle.ToggleService
 import io.getstream.chat.android.offline.ChatDomain
 import kotlinx.coroutines.flow.StateFlow
 
@@ -17,7 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 public class ImagePreviewViewModel(
     private val chatClient: ChatClient,
     private val chatDomain: ChatDomain,
-    private val messageId: String,
+    messageId: String,
 ) : ViewModel() {
 
     /**
@@ -91,7 +92,11 @@ public class ImagePreviewViewModel(
                 it.assetUrl == imageUrl || it.imageUrl == imageUrl
             }
 
-            chatClient.updateMessage(message).enqueue()
+            if (ToggleService.isEnabled(ToggleService.TOGGLE_KEY_OFFLINE)) {
+                chatClient.updateMessage(message)
+            } else {
+                chatDomain.editMessage(message)
+            }.enqueue()
         } else if (message.text.isEmpty() && numberOfAttachments == 1) {
             chatDomain.deleteMessage(message).enqueue { result ->
                 if (result.isSuccess) {
