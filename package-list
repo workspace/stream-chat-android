@@ -1,24 +1,6 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 
-module:stream-chat-android
-com.getstream.sdk.chat
-com.getstream.sdk.chat.adapter
-com.getstream.sdk.chat.adapter.viewholder.attachment
-com.getstream.sdk.chat.adapter.viewholder.message
-com.getstream.sdk.chat.navigation.destinations
-com.getstream.sdk.chat.style
-com.getstream.sdk.chat.utils
-com.getstream.sdk.chat.utils.roundedImageView
-com.getstream.sdk.chat.view
-com.getstream.sdk.chat.view.activity
-com.getstream.sdk.chat.view.channels
-com.getstream.sdk.chat.view.dialog
-com.getstream.sdk.chat.view.messageinput
-com.getstream.sdk.chat.view.messages
-com.getstream.sdk.chat.viewmodel
-com.getstream.sdk.chat.viewmodel.channels
-com.getstream.sdk.chat.viewmodel.factory
 module:stream-chat-android-client
 io.getstream.chat.android.client
 io.getstream.chat.android.client.api
@@ -115,6 +97,7 @@ io.getstream.chat.android.offline.experimental.channel.state
 io.getstream.chat.android.offline.experimental.channel.thread
 io.getstream.chat.android.offline.experimental.channel.thread.state
 io.getstream.chat.android.offline.experimental.extensions
+io.getstream.chat.android.offline.experimental.global
 io.getstream.chat.android.offline.experimental.plugin
 io.getstream.chat.android.offline.experimental.plugin.adapter
 io.getstream.chat.android.offline.experimental.plugin.state
@@ -130,6 +113,8 @@ module:stream-chat-android-pushprovider-firebase
 io.getstream.chat.android.pushprovider.firebase
 module:stream-chat-android-pushprovider-huawei
 io.getstream.chat.android.pushprovider.huawei
+module:stream-chat-android-pushprovider-xiaomi
+io.getstream.chat.android.pushprovider.xiaomi
 module:stream-chat-android-ui-common
 com.getstream.sdk.chat
 com.getstream.sdk.chat.adapter
