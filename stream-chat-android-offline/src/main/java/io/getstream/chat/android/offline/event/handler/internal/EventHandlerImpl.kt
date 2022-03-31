@@ -141,7 +141,7 @@ internal class EventHandlerImpl(
      */
     @VisibleForTesting
     internal suspend fun handleEvent(event: ChatEvent) {
-        logger.i("[handleEvent] event: %s", event)
+        logger.i { "[handleEvent] event: $event" }
         handleConnectEvents(listOf(event))
         handleEventsInternal(listOf(event), isFromSync = false)
     }
@@ -158,7 +158,7 @@ internal class EventHandlerImpl(
     }
 
     private suspend fun replayEventsForChannels(cids: List<String>): Result<List<ChatEvent>> {
-        logger.i("[replayEventsForChannels] cids: %s", cids)
+        logger.i { "[replayEventsForChannels] cids: $cids" }
         return queryEvents(cids)
             .onSuccessSuspend { eventList ->
                 handleEventsInternal(eventList, isFromSync = true)
@@ -174,7 +174,7 @@ internal class EventHandlerImpl(
     }
 
     private suspend fun handleEvents(events: List<ChatEvent>) {
-        logger.i("[handleEvents] events.size: %d", events.size)
+        logger.i { "[handleEvents] events.size: ${events.size}" }
         handleConnectEvents(events)
         handleEventsInternal(events, isFromSync = false)
     }
@@ -188,7 +188,7 @@ internal class EventHandlerImpl(
                     mutableGlobalState._connectionState.value = ConnectionState.OFFLINE
                 }
                 is ConnectedEvent -> {
-                    logger.i("[handleConnectEvents] Received ConnectedEvent, marking the domain as online and initialized")
+                    logger.i { "[handleConnectEvents] Received ConnectedEvent, marking the domain as online and initialized" }
                     updateCurrentUser(event.me)
 
                     mutableGlobalState._connectionState.value = ConnectionState.CONNECTED
@@ -544,7 +544,7 @@ internal class EventHandlerImpl(
 
     private suspend fun handleEventsInternal(events: List<ChatEvent>, isFromSync: Boolean) {
         events.forEach { chatEvent ->
-            logger.v("[handleEventsInternal] chatEvent: %s", chatEvent)
+            logger.v { "[handleEventsInternal] chatEvent: $chatEvent" }
         }
 
         val sortedEvents = events.sortedBy { it.createdAt }
@@ -641,7 +641,9 @@ internal class EventHandlerImpl(
             if (channel?.ownCapabilities?.contains(ChannelCapabilities.READ_EVENTS) == true) {
                 true
             } else {
-                logger.d("Skipping unread counts update for channel: %s. %s capability is missing.", cid, ChannelCapabilities.READ_EVENTS)
+                logger.d {
+                    "Skipping unread counts update for channel: $cid. ${ChannelCapabilities.READ_EVENTS} capability is missing."
+                }
                 false
             }
         }
