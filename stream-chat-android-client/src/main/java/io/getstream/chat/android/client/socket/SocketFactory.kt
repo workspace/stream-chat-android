@@ -41,11 +41,14 @@ internal class SocketFactory(
             json = URLEncoder.encode(json, StandardCharsets.UTF_8.name())
             val baseWsUrl: String =
                 endpoint + "connect?json=" + json + "&api_key=" + apiKey
+            // val token = tokenManager.getToken()
+            // return  baseWsUrl
             if (isAnonymous) {
                 "$baseWsUrl&stream-auth-type=anonymous"
             } else {
                 val token = tokenManager.getToken()
-                "$baseWsUrl&authorization=$token&stream-auth-type=jwt"
+                // "$baseWsUrl&authorization=$token&stream-auth-type=jwt"
+                "$baseWsUrl&stream-auth-type=jwt"
             }
         } catch (throwable: Throwable) {
             throw UnsupportedEncodingException("Unable to encode user details json: $json")
