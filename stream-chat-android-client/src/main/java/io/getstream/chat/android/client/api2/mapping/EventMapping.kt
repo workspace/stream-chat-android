@@ -346,6 +346,7 @@ private fun NotificationAddedToChannelEventDto.toDomain(): NotificationAddedToCh
         channelType = channel_type,
         channelId = channel_id,
         channel = channel.toDomain(),
+        member = member.toDomain(),
         totalUnreadCount = total_unread_count,
         unreadChannels = unread_channels,
     )

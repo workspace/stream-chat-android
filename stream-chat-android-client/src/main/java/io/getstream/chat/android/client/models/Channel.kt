@@ -49,6 +49,7 @@ import java.util.Date
  * @param cooldown Cooldown period after sending each message in seconds.
  * @param pinnedMessages The list of pinned messages in the channel.
  * @param ownCapabilities Channel's capabilities available for the current user. Note that the field is not provided in the events.
+ * @param membership Represents relationship of the current user to this channel.
  * @param extraData A map of custom fields for the channel.
  */
 public data class Channel(
@@ -78,6 +79,7 @@ public data class Channel(
     val cooldown: Int = 0,
     var pinnedMessages: List<Message> = mutableListOf(),
     var ownCapabilities: Set<String> = setOf(),
+    var membership: Member? = null,
     override var extraData: MutableMap<String, Any> = mutableMapOf(),
 ) : CustomObject {
 

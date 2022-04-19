@@ -70,6 +70,7 @@ internal data class DownstreamChannelDto(
     val cooldown: Int = 0,
     val pinned_messages: List<DownstreamMessageDto> = emptyList(),
     val own_capabilities: List<String> = emptyList(),
+    val membership: DownstreamMemberDto?,
 
     val extraData: Map<String, Any>,
 ) : ExtraDataDto

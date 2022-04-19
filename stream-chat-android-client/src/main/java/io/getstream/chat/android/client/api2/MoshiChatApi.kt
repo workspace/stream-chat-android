@@ -667,6 +667,7 @@ internal class MoshiChatApi(
             watcherCount = response.watcher_count
             read = response.read.map(DownstreamChannelUserRead::toDomain)
             members = response.members.map(DownstreamMemberDto::toDomain)
+            membership = response.membership?.toDomain()
             messages = response.messages.map { it.toDomain().enrichWithCid(cid) }
             watchers = response.watchers.map(DownstreamUserDto::toDomain)
             hidden = response.hidden
