@@ -17,6 +17,8 @@
 ### ⬆️ Improved
 
 ### ✅ Added
+- Added `Channel.membership` property. [#3320](https://github.com/GetStream/stream-chat-android/pull/3320)
+- Added `NotificationAddedToChannelEvent.member` property. [#3320](https://github.com/GetStream/stream-chat-android/pull/3320)
 
 ### ⚠️ Changed
 - Changed visibility of the `retry` extension to internal. [#3353](https://github.com/GetStream/stream-chat-android/pull/3353)
