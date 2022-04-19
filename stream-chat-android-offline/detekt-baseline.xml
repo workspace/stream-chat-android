@@ -177,6 +177,7 @@
     <ID>SwallowedException:CustomObjectFiltering.kt$e: ClassCastException</ID>
     <ID>TooGenericExceptionCaught:ChatClient.kt$exception: Exception</ID>
     <ID>TooGenericExceptionCaught:UploadAttachmentsWorker.kt$UploadAttachmentsWorker$e: Exception</ID>
+    <ID>TooManyFunctions:Channel.kt$io.getstream.chat.android.offline.extensions.internal.Channel.kt</ID>
     <ID>TooManyFunctions:ChannelLogic.kt$ChannelLogic : QueryChannelListener</ID>
     <ID>TooManyFunctions:ChannelRepository.kt$ChannelRepository</ID>
     <ID>TooManyFunctions:ChannelRepository.kt$ChannelRepositoryImpl : ChannelRepository</ID>
