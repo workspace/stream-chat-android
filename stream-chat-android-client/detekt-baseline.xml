@@ -9,6 +9,7 @@
     <ID>ComplexMethod:FilterObjectTypeAdapterTest.kt$FilterObjectTypeAdapterTest.Companion$@JvmStatic fun writeArguments()</ID>
     <ID>ComplexMethod:HttpLoggingInterceptor.kt$HttpLoggingInterceptor$@Throws(IOException::class) override fun intercept(chain: Interceptor.Chain): Response</ID>
     <ID>ConstructorParameterNaming:AcceptInviteRequest.kt$AcceptInviteRequest$val accept_invite: Boolean = true</ID>
+    <ID>ConstructorParameterNaming:AddDeviceRequest.kt$AddDeviceRequest$val provider_name: String?</ID>
     <ID>ConstructorParameterNaming:AddDeviceRequest.kt$AddDeviceRequest$val push_provider: String</ID>
     <ID>ConstructorParameterNaming:AddMembersRequest.kt$AddMembersRequest$val add_members: List&lt;String></ID>
     <ID>ConstructorParameterNaming:AppSettingsResponse.kt$AppDto$val file_upload_config: FileUploadConfigDto</ID>
@@ -64,6 +65,7 @@
     <ID>ConstructorParameterNaming:ConfigDto.kt$ConfigDto$val typing_events: Boolean</ID>
     <ID>ConstructorParameterNaming:ConfigDto.kt$ConfigDto$val updated_at: Date?</ID>
     <ID>ConstructorParameterNaming:ConfigDto.kt$ConfigDto$val url_enrichment: Boolean</ID>
+    <ID>ConstructorParameterNaming:DeviceDto.kt$DeviceDto$val provider_name: String?</ID>
     <ID>ConstructorParameterNaming:DeviceDto.kt$DeviceDto$val push_provider: String</ID>
     <ID>ConstructorParameterNaming:DownstreamChannelMuteDto.kt$DownstreamChannelMuteDto$val created_at: Date</ID>
     <ID>ConstructorParameterNaming:DownstreamChannelMuteDto.kt$DownstreamChannelMuteDto$val updated_at: Date</ID>

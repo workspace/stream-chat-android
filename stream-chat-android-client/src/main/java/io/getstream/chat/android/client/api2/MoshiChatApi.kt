@@ -214,7 +214,8 @@ internal class MoshiChatApi(
             connectionId = connectionId,
             request = AddDeviceRequest(
                 device.token,
-                device.pushProvider.key
+                device.pushProvider.key,
+                device.providerName,
             ),
         ).toUnitCall()
     }

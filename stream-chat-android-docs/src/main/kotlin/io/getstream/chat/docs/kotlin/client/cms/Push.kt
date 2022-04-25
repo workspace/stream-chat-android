@@ -24,6 +24,7 @@ class Push(val context: Context, val client: ChatClient) {
                 Device(
                     token = "push-provider-token",
                     pushProvider = PushProvider.FIREBASE,
+                    providerName = "optional-provider-name",
                 )
             ).enqueue { result ->
                 if (result.isSuccess) {
@@ -42,7 +43,7 @@ class Push(val context: Context, val client: ChatClient) {
             override fun onNewToken(token: String) {
                 // Update device's token on Stream backend
                 try {
-                    FirebaseMessagingDelegate.registerFirebaseToken(token)
+                    FirebaseMessagingDelegate.registerFirebaseToken(token, "optional-provider-name")
                 } catch (exception: IllegalStateException) {
                     // ChatClient was not initialized
                 }
@@ -75,6 +76,7 @@ class Push(val context: Context, val client: ChatClient) {
                 Device(
                     token = "push-provider-token",
                     pushProvider = PushProvider.FIREBASE,
+                    providerName = "optional-provider-name",
                 )
             ).enqueue { result ->
                 if (result.isSuccess) {
@@ -93,6 +95,7 @@ class Push(val context: Context, val client: ChatClient) {
                 Device(
                     token = "push-provider-token",
                     pushProvider = PushProvider.FIREBASE,
+                    providerName = "optional-provider-name",
                 )
             ).enqueue { result ->
                 if (result.isSuccess) {
