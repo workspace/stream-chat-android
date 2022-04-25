@@ -18,6 +18,7 @@
 ### ⬆️ Improved
 
 ### ✅ Added
+- Add `provideName` property to `Device` entity to support Multi-Bundel [#3396](https://github.com/GetStream/stream-chat-android/pull/3396)
 
 ### ⚠️ Changed
 - Changed visibility of the `retry` extension to internal. [#3353](https://github.com/GetStream/stream-chat-android/pull/3353)
@@ -96,6 +97,7 @@
 ### ⬆️ Improved
 
 ### ✅ Added
+- Support Multi-Bundle [#3396](https://github.com/GetStream/stream-chat-android/pull/3396)
 
 ### ⚠️ Changed
 
@@ -107,6 +109,7 @@
 ### ⬆️ Improved
 
 ### ✅ Added
+- Support Multi-Bundle [#3396](https://github.com/GetStream/stream-chat-android/pull/3396)
 
 ### ⚠️ Changed
 
@@ -118,6 +121,7 @@
 ### ⬆️ Improved
 
 ### ✅ Added
+- Support Multi-Bundle [#3396](https://github.com/GetStream/stream-chat-android/pull/3396)
 
 ### ⚠️ Changed
 
