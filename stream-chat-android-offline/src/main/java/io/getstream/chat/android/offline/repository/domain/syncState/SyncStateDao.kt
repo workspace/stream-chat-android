@@ -6,13 +6,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-internal interface SyncStateDao {
+public interface SyncStateDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(syncStateEntity: SyncStateEntity)
+    public suspend fun insert(syncStateEntity: SyncStateEntity)
 
     @Query(
         "SELECT * FROM stream_sync_state " +
             "WHERE stream_sync_state.userId = :userId"
     )
-    suspend fun select(userId: String): SyncStateEntity?
+    public suspend fun select(userId: String): SyncStateEntity?
 }

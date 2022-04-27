@@ -11,7 +11,7 @@ import io.getstream.chat.android.offline.repository.domain.message.channelinfo.C
 import io.getstream.chat.android.offline.repository.domain.reaction.ReactionEntity
 import java.util.Date
 
-internal data class MessageEntity(
+public data class MessageEntity(
     @Embedded val messageInnerEntity: MessageInnerEntity,
     @Relation(entity = AttachmentEntity::class, parentColumn = "id", entityColumn = "messageId")
     val attachments: List<AttachmentEntity>,
@@ -24,7 +24,7 @@ internal data class MessageEntity(
 )
 
 @Entity(tableName = "stream_chat_message", indices = [Index(value = ["cid", "createdAt"]), Index(value = ["syncStatus"])])
-internal data class MessageInnerEntity(
+public data class MessageInnerEntity(
     @PrimaryKey
     val id: String,
     val cid: String,

@@ -163,6 +163,9 @@ dependencies {
     implementation Dependencies.coilGif
     implementation Dependencies.shimmer
 
+    implementation Dependencies.roomRuntime
+    implementation Dependencies.roomKtx
+
     debugImplementation Dependencies.flipper
     debugImplementation Dependencies.flipperNetwork
     debugImplementation Dependencies.flipperLoader

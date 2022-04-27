@@ -14,7 +14,7 @@ import java.util.Date
  * Messages are stored on their own table for easier pagination and updates.
  */
 @Entity(tableName = "stream_chat_channel_state", indices = [Index(value = ["syncStatus"])])
-internal data class ChannelEntity(
+public data class ChannelEntity(
     val type: String,
     val channelId: String,
     val cooldown: Int,

@@ -15,7 +15,7 @@ import java.util.Date
  * userEntity.toUser()
  */
 @Entity(tableName = "stream_chat_user")
-internal data class UserEntity(
+public data class UserEntity(
     @PrimaryKey val id: String,
     /** used for storing the current user */
     val originalId: String = "",

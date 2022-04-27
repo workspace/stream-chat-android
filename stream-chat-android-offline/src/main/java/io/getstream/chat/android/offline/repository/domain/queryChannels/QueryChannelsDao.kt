@@ -7,11 +7,11 @@ import androidx.room.Query
 import androidx.room.Transaction
 
 @Dao
-internal abstract class QueryChannelsDao {
+public abstract class QueryChannelsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insert(queryChannelsEntity: QueryChannelsEntity)
+    public abstract suspend fun insert(queryChannelsEntity: QueryChannelsEntity)
 
     @Transaction
     @Query("SELECT * FROM stream_channel_query WHERE stream_channel_query.id=:id")
-    abstract suspend fun select(id: String): QueryChannelsEntity?
+    public abstract suspend fun select(id: String): QueryChannelsEntity?
 }

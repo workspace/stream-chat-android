@@ -16,8 +16,9 @@
         android:theme="@style/AppTheme"
         >
 
+
         <activity
-            android:name="io.getstream.chat.ui.sample.feature.HostActivity"
+            android:name=".database.DatabaseActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="true"
             >
@@ -26,5 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 </manifest>

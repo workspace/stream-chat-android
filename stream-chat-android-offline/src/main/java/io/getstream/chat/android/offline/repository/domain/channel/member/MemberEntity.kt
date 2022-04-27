@@ -7,7 +7,7 @@ import java.util.Date
  * Efficiently store the member data
  */
 @JsonClass(generateAdapter = true)
-internal data class MemberEntity(
+public data class MemberEntity(
     var userId: String,
     /** the user's role, user, moderator or admin */
     var role: String = "",

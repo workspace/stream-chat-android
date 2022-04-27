@@ -12,10 +12,10 @@ import io.getstream.chat.android.offline.repository.domain.reaction.ReactionEnti
 import java.util.Date
 
 @Dao
-internal abstract class MessageDao {
+public abstract class MessageDao {
 
     @Transaction
-    open suspend fun insert(messageEntities: List<MessageEntity>) {
+    public open suspend fun insert(messageEntities: List<MessageEntity>) {
         upsertMessageInnerEntities(messageEntities.map(MessageEntity::messageInnerEntity))
         deleteAttachments(messageEntities.map { it.messageInnerEntity.id })
         insertAttachments(messageEntities.flatMap(MessageEntity::attachments))
@@ -23,7 +23,7 @@ internal abstract class MessageDao {
     }
 
     @Transaction
-    open fun deleteAttachments(messageIds: List<String>) {
+    public open fun deleteAttachments(messageIds: List<String>) {
         messageIds.chunked(SQLITE_MAX_VARIABLE_NUMBER).forEach(::deleteAttachmentsChunked)
     }
 
@@ -31,7 +31,7 @@ internal abstract class MessageDao {
     protected abstract fun deleteAttachmentsChunked(messageIds: List<String>)
 
     @Transaction
-    open suspend fun insert(messageEntity: MessageEntity) = insert(listOf(messageEntity))
+    public open suspend fun insert(messageEntity: MessageEntity): Unit = insert(listOf(messageEntity))
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     protected abstract suspend fun insertMessageInnerEntity(messageInnerEntity: MessageInnerEntity): Long
@@ -43,7 +43,7 @@ internal abstract class MessageDao {
     protected abstract fun updateMessageInnerEntity(messageInnerEntity: MessageInnerEntity)
 
     @Transaction
-    open suspend fun upsertMessageInnerEntity(messageInnerEntity: MessageInnerEntity) {
+    public open suspend fun upsertMessageInnerEntity(messageInnerEntity: MessageInnerEntity) {
         val rowId = insertMessageInnerEntity(messageInnerEntity)
         if (rowId == -1L) {
             updateMessageInnerEntity(messageInnerEntity)
@@ -51,7 +51,7 @@ internal abstract class MessageDao {
     }
 
     @Transaction
-    open suspend fun upsertMessageInnerEntities(messageInnerEntities: List<MessageInnerEntity>) {
+    public open suspend fun upsertMessageInnerEntities(messageInnerEntities: List<MessageInnerEntity>) {
         val rowIds = insertMessageInnerEntities(messageInnerEntities)
         val entitiesToUpdate = rowIds.mapIndexedNotNull { index, rowId ->
             if (rowId == -1L) messageInnerEntities[index] else null
@@ -67,7 +67,7 @@ internal abstract class MessageDao {
 
     @Query("SELECT * from stream_chat_message WHERE cid = :cid AND (createdAt > :dateFilter || createdLocallyAt > :dateFilter) ORDER BY CASE WHEN createdAt IS NULL THEN createdLocallyAt ELSE createdAt END ASC LIMIT :limit")
     @Transaction
-    abstract suspend fun messagesForChannelNewerThan(
+    public abstract suspend fun messagesForChannelNewerThan(
         cid: String,
         limit: Int = 100,
         dateFilter: Date,
@@ -75,7 +75,7 @@ internal abstract class MessageDao {
 
     @Query("SELECT * from stream_chat_message WHERE cid = :cid AND (createdAt >= :dateFilter || createdLocallyAt >= :dateFilter) ORDER BY CASE WHEN createdAt IS NULL THEN createdLocallyAt ELSE createdAt END ASC LIMIT :limit")
     @Transaction
-    abstract suspend fun messagesForChannelEqualOrNewerThan(
+    public abstract suspend fun messagesForChannelEqualOrNewerThan(
         cid: String,
         limit: Int = 100,
         dateFilter: Date,
@@ -83,7 +83,7 @@ internal abstract class MessageDao {
 
     @Query("SELECT * from stream_chat_message WHERE cid = :cid AND (createdAt < :dateFilter || createdLocallyAt < :dateFilter) ORDER BY CASE WHEN createdAt IS NULL THEN createdLocallyAt ELSE createdAt END DESC LIMIT :limit")
     @Transaction
-    abstract suspend fun messagesForChannelOlderThan(
+    public abstract suspend fun messagesForChannelOlderThan(
         cid: String,
         limit: Int = 100,
         dateFilter: Date,
@@ -91,7 +91,7 @@ internal abstract class MessageDao {
 
     @Query("SELECT * from stream_chat_message WHERE cid = :cid AND (createdAt <= :dateFilter || createdLocallyAt <= :dateFilter) ORDER BY CASE WHEN createdAt IS NULL THEN createdLocallyAt ELSE createdAt END DESC LIMIT :limit")
     @Transaction
-    abstract suspend fun messagesForChannelEqualOrOlderThan(
+    public abstract suspend fun messagesForChannelEqualOrOlderThan(
         cid: String,
         limit: Int = 100,
         dateFilter: Date,
@@ -99,16 +99,16 @@ internal abstract class MessageDao {
 
     @Query("SELECT * from stream_chat_message WHERE cid = :cid ORDER BY CASE WHEN createdAt IS NULL THEN createdLocallyAt ELSE createdAt END DESC LIMIT :limit")
     @Transaction
-    abstract suspend fun messagesForChannel(cid: String, limit: Int = 100): List<MessageEntity>
+    public abstract suspend fun messagesForChannel(cid: String, limit: Int = 100): List<MessageEntity>
 
     @Query("DELETE from stream_chat_message WHERE cid = :cid AND createdAt < :deleteMessagesBefore")
-    abstract suspend fun deleteChannelMessagesBefore(cid: String, deleteMessagesBefore: Date)
+    public abstract suspend fun deleteChannelMessagesBefore(cid: String, deleteMessagesBefore: Date)
 
     @Query("DELETE from stream_chat_message WHERE cid = :cid AND id = :messageId")
-    abstract suspend fun deleteMessage(cid: String, messageId: String)
+    public abstract suspend fun deleteMessage(cid: String, messageId: String)
 
     @Transaction
-    open suspend fun select(ids: List<String>): List<MessageEntity> {
+    public open suspend fun select(ids: List<String>): List<MessageEntity> {
         return ids.chunked(SQLITE_MAX_VARIABLE_NUMBER).flatMap { messageIds -> selectChunked(messageIds) }
     }
 
@@ -118,15 +118,15 @@ internal abstract class MessageDao {
 
     @Query("SELECT * FROM stream_chat_message WHERE stream_chat_message.id IN (:id)")
     @Transaction
-    abstract suspend fun select(id: String): MessageEntity?
+    public abstract suspend fun select(id: String): MessageEntity?
 
     @Transaction
-    open suspend fun selectSyncNeeded(): List<MessageEntity> {
+    public open suspend fun selectSyncNeeded(): List<MessageEntity> {
         return selectBySyncStatus(SyncStatus.SYNC_NEEDED)
     }
 
     @Transaction
-    open suspend fun selectWaitForAttachments(): List<MessageEntity> {
+    public open suspend fun selectWaitForAttachments(): List<MessageEntity> {
         return selectBySyncStatus(SyncStatus.AWAITING_ATTACHMENTS)
     }
 

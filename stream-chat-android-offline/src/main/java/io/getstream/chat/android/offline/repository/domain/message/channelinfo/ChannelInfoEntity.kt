@@ -9,7 +9,7 @@ import io.getstream.chat.android.offline.repository.domain.message.MessageInnerE
  * In that case, when embedded field is read ([MessageInnerEntity.channelInfo]), the embedded object is not
  * constructed and the reference is set to null.
  */
-internal data class ChannelInfoEntity(
+public data class ChannelInfoEntity(
     val cid: String?,
     val id: String?,
     val type: String?,

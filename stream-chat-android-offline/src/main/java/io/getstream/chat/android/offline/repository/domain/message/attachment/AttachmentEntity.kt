@@ -21,7 +21,7 @@ import io.getstream.chat.android.offline.repository.domain.message.MessageInnerE
     ],
     indices = [Index("messageId")]
 )
-internal data class AttachmentEntity(
+public data class AttachmentEntity(
     @ColumnInfo(index = true)
     @PrimaryKey
     val id: String,
@@ -47,7 +47,7 @@ internal data class AttachmentEntity(
     var uploadState: UploadStateEntity? = null,
     val extraData: Map<String, Any>,
 ) {
-    companion object {
+    public companion object {
         internal const val EXTRA_DATA_ID_KEY = "extra_data_id_key"
         internal fun generateId(messageId: String, index: Int): String {
             return messageId + "_$index"
@@ -55,10 +55,10 @@ internal data class AttachmentEntity(
     }
 }
 
-internal data class UploadStateEntity(val statusCode: Int, val errorMessage: String?) {
-    internal companion object {
-        internal const val UPLOAD_STATE_SUCCESS = 1
-        internal const val UPLOAD_STATE_IN_PROGRESS = 2
-        internal const val UPLOAD_STATE_FAILED = 3
+public data class UploadStateEntity(val statusCode: Int, val errorMessage: String?) {
+    public companion object {
+        public const val UPLOAD_STATE_SUCCESS: Int = 1
+        public const val UPLOAD_STATE_IN_PROGRESS: Int = 2
+        public const val UPLOAD_STATE_FAILED: Int = 3
     }
 }

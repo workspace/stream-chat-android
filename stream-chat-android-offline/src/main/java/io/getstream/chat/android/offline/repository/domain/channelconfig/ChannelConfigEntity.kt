@@ -9,7 +9,7 @@ import androidx.room.Relation
 import java.util.Date
 
 @Entity(tableName = "stream_chat_channel_config")
-internal data class ChannelConfigInnerEntity(
+public data class ChannelConfigInnerEntity(
     @PrimaryKey
     val channelType: String,
     val createdAt: Date?,
@@ -45,7 +45,7 @@ internal data class ChannelConfigInnerEntity(
         )
     ]
 )
-internal data class CommandInnerEntity(
+public data class CommandInnerEntity(
     val name: String,
     val description: String,
     val args: String,
@@ -57,7 +57,7 @@ internal data class CommandInnerEntity(
     var id: Int = hashCode()
 }
 
-internal data class ChannelConfigEntity(
+public data class ChannelConfigEntity(
     @Embedded val channelConfigInnerEntity: ChannelConfigInnerEntity,
     @Relation(parentColumn = "channelType", entityColumn = "channelType", entity = CommandInnerEntity::class)
     val commands: List<CommandInnerEntity>,

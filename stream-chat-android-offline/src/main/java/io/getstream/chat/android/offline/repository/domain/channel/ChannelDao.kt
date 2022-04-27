@@ -9,44 +9,47 @@ import io.getstream.chat.android.client.utils.SyncStatus
 import java.util.Date
 
 @Dao
-internal interface ChannelDao {
+public interface ChannelDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(channelEntity: ChannelEntity)
+    public suspend fun insert(channelEntity: ChannelEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMany(channelEntities: List<ChannelEntity>)
+    public suspend fun insertMany(channelEntities: List<ChannelEntity>)
 
     @Transaction
     @Query("SELECT cid FROM stream_chat_channel_state")
-    suspend fun selectAllCids(): List<String>
+    public suspend fun selectAllCids(): List<String>
 
     @Query(
         "SELECT * FROM stream_chat_channel_state " +
             "WHERE stream_chat_channel_state.syncStatus IN (:syncStatus)"
     )
-    suspend fun selectSyncNeeded(syncStatus: SyncStatus = SyncStatus.SYNC_NEEDED): List<ChannelEntity>
+    public suspend fun selectSyncNeeded(syncStatus: SyncStatus = SyncStatus.SYNC_NEEDED): List<ChannelEntity>
 
     @Query(
         "SELECT * FROM stream_chat_channel_state " +
             "WHERE stream_chat_channel_state.cid IN (:cids)"
     )
-    suspend fun select(cids: List<String>): List<ChannelEntity>
+    public suspend fun select(cids: List<String>): List<ChannelEntity>
 
     @Query(
         "SELECT * FROM stream_chat_channel_state " +
             "WHERE stream_chat_channel_state.cid IN (:cid)"
     )
-    suspend fun select(cid: String?): ChannelEntity?
+    public suspend fun select(cid: String?): ChannelEntity?
 
     @Query("DELETE from stream_chat_channel_state WHERE cid = :cid")
-    suspend fun delete(cid: String)
+    public suspend fun delete(cid: String)
 
     @Query("UPDATE stream_chat_channel_state SET deletedAt = :deletedAt WHERE cid = :cid")
-    suspend fun setDeletedAt(cid: String, deletedAt: Date)
+    public suspend fun setDeletedAt(cid: String, deletedAt: Date)
 
     @Query("UPDATE stream_chat_channel_state SET hidden = :hidden, hideMessagesBefore = :hideMessagesBefore WHERE cid = :cid")
-    suspend fun setHidden(cid: String, hidden: Boolean, hideMessagesBefore: Date)
+    public suspend fun setHidden(cid: String, hidden: Boolean, hideMessagesBefore: Date)
 
     @Query("UPDATE stream_chat_channel_state SET hidden = :hidden WHERE cid = :cid")
-    suspend fun setHidden(cid: String, hidden: Boolean)
+    public suspend fun setHidden(cid: String, hidden: Boolean)
+
+    @Query("DELETE FROM stream_chat_channel_state")
+    public suspend fun deleteAll(): Int
 }

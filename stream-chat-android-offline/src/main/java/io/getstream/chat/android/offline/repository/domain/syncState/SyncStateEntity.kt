@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.util.Date
 
 @Entity(tableName = "stream_sync_state")
-internal data class SyncStateEntity(
+public data class SyncStateEntity(
     @PrimaryKey var userId: String,
     var activeChannelIds: List<String> = mutableListOf(),
     var lastSyncedAt: Date? = null,

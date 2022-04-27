@@ -7,17 +7,17 @@ import androidx.room.Query
 import androidx.room.Transaction
 
 @Dao
-internal abstract class ChannelConfigDao {
+public abstract class ChannelConfigDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @Transaction
-    open suspend fun insert(channelConfigEntities: List<ChannelConfigEntity>) {
+    public open suspend fun insert(channelConfigEntities: List<ChannelConfigEntity>) {
         insertConfigs(channelConfigEntities.map(ChannelConfigEntity::channelConfigInnerEntity))
         insertCommands(channelConfigEntities.flatMap(ChannelConfigEntity::commands))
     }
 
     @Transaction
-    open suspend fun insert(channelConfigEntity: ChannelConfigEntity) {
+    public open suspend fun insert(channelConfigEntity: ChannelConfigEntity) {
         insertConfig(channelConfigEntity.channelConfigInnerEntity)
         insertCommands(channelConfigEntity.commands)
     }
@@ -33,5 +33,5 @@ internal abstract class ChannelConfigDao {
 
     @Transaction
     @Query("SELECT * FROM stream_chat_channel_config LIMIT 100")
-    abstract suspend fun selectAll(): List<ChannelConfigEntity>
+    public abstract suspend fun selectAll(): List<ChannelConfigEntity>
 }

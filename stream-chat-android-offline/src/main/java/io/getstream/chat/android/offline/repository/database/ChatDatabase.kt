@@ -58,21 +58,21 @@ import io.getstream.chat.android.offline.repository.domain.user.UserEntity
     SyncStatusConverter::class,
     DateConverter::class,
 )
-internal abstract class ChatDatabase : RoomDatabase() {
-    abstract fun queryChannelsDao(): QueryChannelsDao
-    abstract fun userDao(): UserDao
-    abstract fun reactionDao(): ReactionDao
-    abstract fun messageDao(): MessageDao
-    abstract fun channelStateDao(): ChannelDao
-    abstract fun channelConfigDao(): ChannelConfigDao
-    abstract fun syncStateDao(): SyncStateDao
-    abstract fun attachmentDao(): AttachmentDao
+public abstract class ChatDatabase : RoomDatabase() {
+    public abstract fun queryChannelsDao(): QueryChannelsDao
+    public abstract fun userDao(): UserDao
+    public abstract fun reactionDao(): ReactionDao
+    public abstract fun messageDao(): MessageDao
+    public abstract fun channelStateDao(): ChannelDao
+    public abstract fun channelConfigDao(): ChannelConfigDao
+    public abstract fun syncStateDao(): SyncStateDao
+    public abstract fun attachmentDao(): AttachmentDao
 
-    companion object {
+    public companion object {
         @Volatile
         private var INSTANCES: MutableMap<String, ChatDatabase?> = mutableMapOf()
 
-        fun getDatabase(context: Context, userId: String): ChatDatabase {
+        public fun getDatabase(context: Context, userId: String): ChatDatabase {
             if (!INSTANCES.containsKey(userId)) {
                 synchronized(this) {
                     val db = Room.databaseBuilder(

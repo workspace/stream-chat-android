@@ -39,7 +39,7 @@ import java.util.Date
         )
     ]
 )
-internal data class ReactionEntity(
+public data class ReactionEntity(
     @ColumnInfo(index = true)
     val messageId: String,
     val userId: String,
@@ -60,5 +60,5 @@ internal data class ReactionEntity(
     val syncStatus: SyncStatus,
 ) {
     @PrimaryKey
-    var id = messageId.hashCode() + userId.hashCode() + type.hashCode()
+    public var id: Int = messageId.hashCode() + userId.hashCode() + type.hashCode()
 }

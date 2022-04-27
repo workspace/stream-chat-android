@@ -7,7 +7,7 @@ import io.getstream.chat.android.client.api.models.QuerySort
 import io.getstream.chat.android.client.models.Channel
 
 @Entity(tableName = "stream_channel_query")
-internal data class QueryChannelsEntity(
+public data class QueryChannelsEntity(
     @PrimaryKey
     var id: String,
     val filter: FilterObject,
