@@ -2,6 +2,7 @@ package io.getstream.chat.ui.sample.application
 
 import android.app.Application
 import android.os.Build
+import android.os.StrictMode
 import coil.Coil
 import coil.ImageLoader
 import coil.decode.GifDecoder
@@ -20,6 +21,15 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        StrictMode.setVmPolicy(
+            StrictMode.VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects()
+                .detectLeakedClosableObjects()
+                .penaltyDeath()
+                .build()
+        )
+
         chatInitializer.init(getApiKey())
         instance = this
         DebugMetricsHelper.init()

@@ -5,13 +5,13 @@ import com.squareup.moshi.adapter
 import io.getstream.chat.android.client.api.models.QuerySort
 import io.getstream.chat.android.client.models.Channel
 
-internal class QuerySortConverter {
+public class QuerySortConverter {
 
     @OptIn(ExperimentalStdlibApi::class)
     private val adapter = moshi.adapter<List<Map<String, Any>>>()
 
     @TypeConverter
-    fun stringToObject(data: String?): QuerySort<Channel> {
+    public fun stringToObject(data: String?): QuerySort<Channel> {
         if (data.isNullOrEmpty()) {
             return QuerySort()
         }
@@ -32,7 +32,7 @@ internal class QuerySortConverter {
     }
 
     @TypeConverter
-    fun objectToString(querySort: QuerySort<Channel>): String {
+    public fun objectToString(querySort: QuerySort<Channel>): String {
         return adapter.toJson(querySort.toDto())
     }
 }

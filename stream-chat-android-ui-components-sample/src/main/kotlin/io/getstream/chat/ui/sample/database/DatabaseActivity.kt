@@ -11,7 +11,7 @@ class DatabaseActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityDatabaseBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<DatabaseViewModel> {
-        DatabaseViewModel.Factory(application)
+        DatabaseViewModelFactory(application)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -23,12 +23,12 @@ import io.getstream.chat.android.client.api.models.OrFilterObject
 import io.getstream.chat.android.client.models.Filters
 import java.lang.IllegalArgumentException
 
-internal class FilterObjectConverter {
+public class FilterObjectConverter {
     @OptIn(ExperimentalStdlibApi::class)
     private val adapter = moshi.adapter<Map<String, Any>>()
 
     @TypeConverter
-    fun stringToObject(data: String?): FilterObject? {
+    public fun stringToObject(data: String?): FilterObject? {
         if (data.isNullOrEmpty() || data == "null") {
             return NeutralFilterObject
         }
@@ -37,7 +37,7 @@ internal class FilterObjectConverter {
     }
 
     @TypeConverter
-    fun objectToString(filterObject: FilterObject): String {
+    public fun objectToString(filterObject: FilterObject): String {
         return adapter.toJson(filterObject.toMap())
     }
 }

@@ -5,7 +5,7 @@ import com.squareup.moshi.adapter
 import io.getstream.chat.android.offline.repository.domain.channel.member.MemberEntity
 import io.getstream.chat.android.offline.repository.domain.channel.userread.ChannelUserReadEntity
 
-internal class MapConverter {
+public class MapConverter {
     @OptIn(ExperimentalStdlibApi::class)
     private val stringMapAdapter = moshi.adapter<Map<String, String>>()
     @OptIn(ExperimentalStdlibApi::class)
@@ -16,12 +16,12 @@ internal class MapConverter {
     private val memberEntityMapAdapter = moshi.adapter<Map<String, MemberEntity>>()
 
     @TypeConverter
-    fun readMapToString(someObjects: Map<String, ChannelUserReadEntity>?): String {
+    public fun readMapToString(someObjects: Map<String, ChannelUserReadEntity>?): String {
         return channelUserReadMapAdapter.toJson(someObjects)
     }
 
     @TypeConverter
-    fun stringToReadMap(data: String?): Map<String, ChannelUserReadEntity>? {
+    public fun stringToReadMap(data: String?): Map<String, ChannelUserReadEntity>? {
         if (data.isNullOrEmpty() || data == "null") {
             return mutableMapOf()
         }
@@ -29,12 +29,12 @@ internal class MapConverter {
     }
 
     @TypeConverter
-    fun memberMapToString(someObjects: Map<String, MemberEntity>?): String? {
+    public fun memberMapToString(someObjects: Map<String, MemberEntity>?): String? {
         return memberEntityMapAdapter.toJson(someObjects)
     }
 
     @TypeConverter
-    fun stringToMemberMap(data: String?): Map<String, MemberEntity>? {
+    public fun stringToMemberMap(data: String?): Map<String, MemberEntity>? {
         if (data.isNullOrEmpty() || data == "null") {
             return emptyMap()
         }
@@ -42,7 +42,7 @@ internal class MapConverter {
     }
 
     @TypeConverter
-    fun stringToMap(data: String?): Map<String, Int>? {
+    public fun stringToMap(data: String?): Map<String, Int>? {
         if (data.isNullOrEmpty() || data == "null") {
             return mutableMapOf()
         }
@@ -50,12 +50,12 @@ internal class MapConverter {
     }
 
     @TypeConverter
-    fun mapToString(someObjects: Map<String, Int>?): String? {
+    public fun mapToString(someObjects: Map<String, Int>?): String? {
         return intMapAdapter.toJson(someObjects)
     }
 
     @TypeConverter
-    fun stringToStringMap(data: String?): Map<String, String>? {
+    public fun stringToStringMap(data: String?): Map<String, String>? {
         if (data.isNullOrEmpty() || data == "null") {
             return mutableMapOf()
         }
@@ -63,7 +63,7 @@ internal class MapConverter {
     }
 
     @TypeConverter
-    fun stringMapToString(someObjects: Map<String, String>?): String? {
+    public fun stringMapToString(someObjects: Map<String, String>?): String? {
         return stringMapAdapter.toJson(someObjects)
     }
 }
