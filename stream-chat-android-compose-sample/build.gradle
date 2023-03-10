@@ -95,6 +95,7 @@ dependencies {
 
     implementation Dependencies.androidxCoreKtx
     implementation Dependencies.androidxAppCompat
+    implementation Dependencies.androidxStartup
     implementation Dependencies.materialComponents
     implementation Dependencies.streamPushFirebase
 

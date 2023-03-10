@@ -32,9 +32,6 @@ class ChatApp : Application() {
         dateFormatter = DateFormatter.from(this)
 
         initializeToggleService()
-
-        // Initialize Stream SDK
-        ChatHelper.initializeSdk(this, getApiKey())
     }
 
     private fun getApiKey(): String {
